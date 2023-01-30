@@ -53,9 +53,15 @@ def main():
 
     # Make predictions on the test data:
     y_pred = lr.predict(X_test)
+    print(y_pred)
+    print(y_test)
 
     # Compute the mean squared error:
     mse = mean_squared_error(y_test, y_pred)
 
     # Print the mean squared error:
     print("Mean squared error: {:.2f}".format(mse))
+
+
+
+main()
