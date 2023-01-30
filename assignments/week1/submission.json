@@ -7,6 +7,7 @@
         }
     ],
     "sources": [
-        "Conversations with TA Haoran."
+        "Conversations with TA Haoran.",
+        "Gradient Descent: https://towardsdatascience.com/linear-regression-using-gradient-descent-97a6c8700931"
     ]
 }
