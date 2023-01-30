@@ -7,7 +7,6 @@ class LinearRegression:
     # b: float
     """
 
-
     def __init__(self):
         self.w = None
         self.b = None
@@ -25,11 +24,11 @@ class LinearRegression:
         """
         X = np.hstack((np.ones((X.shape[0], 1)), X))
         self.w = np.linalg.inv(X.T @ X) @ X.T @ y
-        self.w= self.w[1:]
+        self.w = self.w[1:]
         self.b = self.w[0]
         print(self.w.shape, self.b)
 
-    def predict(self,  X: np.ndarray) -> np.ndarray:
+    def predict(self, X: np.ndarray) -> np.ndarray:
         """
         Predict the output for the given input.
 
@@ -40,7 +39,7 @@ class LinearRegression:
             np.ndarray: The predicted output.
 
         """
-        return X.dot( self.w ) + self.b
+        return X.dot(self.w) + self.b
 
 
 class GradientDescentLinearRegression(LinearRegression):
@@ -48,7 +47,9 @@ class GradientDescentLinearRegression(LinearRegression):
     A linear regression model that uses gradient descent to fit the model.
     """
 
-    def fit(self, X: np.ndarray, y: np.ndarray, lr: float = 0.01, epochs: int = 1000) -> None:
+    def fit(
+        self, X: np.ndarray, y: np.ndarray, lr: float = 0.01, epochs: int = 1000
+    ) -> None:
         """
         Fit the data on the model.
 
@@ -66,11 +67,10 @@ class GradientDescentLinearRegression(LinearRegression):
         n = X.shape[0]
         for _ in range(epochs):
             b_gradient = -2 * np.sum(y - X.dot(w) + b) / n
-            w_gradient = -2 * np.sum(X.T.dot(y -(X.dot(w) + b))) / n
+            w_gradient = -2 * np.sum(X.T.dot(y - (X.dot(w) + b))) / n
             b = b + (lr * b_gradient)
             w = w - (lr * w_gradient)
         self.w, self.b = w, b
-    
 
     def predict(self, X: np.ndarray) -> np.ndarray:
         """
@@ -84,4 +84,3 @@ class GradientDescentLinearRegression(LinearRegression):
 
         """
         return X.dot(self.w) + self.b
-        
