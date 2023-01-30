@@ -22,12 +22,15 @@ class LinearRegression:
         Returns:
             None
         """
-        bias_data = np.ones((X.shape[0],1))
+        bias_data = np.ones((X.shape[0], 1))
         train_data = np.concatenate((X, bias_data), axis=1)
-        
-        all_w = np.matmul(np.matmul(np.linalg.inv(np.matmul(train_data.T, train_data)), train_data.T), y)
+
+        all_w = np.matmul(
+            np.matmul(np.linalg.inv(np.matmul(train_data.T, train_data)), train_data.T),
+            y,
+        )
         self.w, self.b = all_w[:-1], all_w[-1:]
-  
+
     def predict(self, X: np.ndarray) -> np.ndarray:
         """
         Predict the output for the given input.
@@ -39,10 +42,10 @@ class LinearRegression:
             np.ndarray: The predicted output.
 
         """
-        bias_data = np.ones((X.shape[0],1))
+        bias_data = np.ones((X.shape[0], 1))
         X = np.concatenate((X, bias_data), axis=1)
         w_all = np.concatenate((self.w, self.b))
-        return  np.matmul(X, w_all)
+        return np.matmul(X, w_all)
 
 
 class GradientDescentLinearRegression(LinearRegression):
@@ -86,4 +89,4 @@ class GradientDescentLinearRegression(LinearRegression):
             np.ndarray: The predicted output.
 
         """
-        return X.dot(self.w)+self.b
+        return X.dot(self.w) + self.b
